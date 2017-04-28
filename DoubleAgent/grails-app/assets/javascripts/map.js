@@ -9,8 +9,11 @@ var map = (function() {
 
     return {
         addMarker: function (lat, long) {
+            var spyDescription = "<dl><dt>Name</dt>" + "<dd>"+ "spy.name" + "</dd>" + "<dt>Age</dt>"+"<dd>"+ "spy age" +"</dd>"
+                +"<dt>Gender</dt>" + "<dd>"+ "spy gender" + "</dd>" + "<dt>Latitude</dt>" + "<dd>"+ "spy latitude" + "</dd>"
+                +"<dt>Longitude</dt>" + "<dd>" + "spy longitude" + "</dd>"
             var marker = L.marker([lat, long]).addTo(mymap)
-                .bindPopup('Latitude: ' + lat + '\nLongitude: ' + long)
+                .bindPopup(spyDescription)
                 .openPopup();
             markers.push(marker)
         },
