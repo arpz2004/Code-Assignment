@@ -18,6 +18,7 @@
             <g:each in="${spys}" var="spy">
                 map.addMarker(${spy.latitude}, ${spy.longitude});
             </g:each>
+            map.fitScreen()
         }
     </g:javascript>
 </body>
