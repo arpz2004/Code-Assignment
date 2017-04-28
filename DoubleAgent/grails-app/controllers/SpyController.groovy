@@ -1,3 +1,8 @@
 class SpyController {
-    static scaffold = Spy
+    def scaffold = Spy
+
+    def index = {
+        def spys = Spy.findAll()
+        return [spys: spys]
+    }
 }
