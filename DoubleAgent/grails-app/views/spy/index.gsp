@@ -15,9 +15,9 @@
     <div id="mapid"></div>
     <g:javascript>
         window.onload=function(){
-        <g:each in="${spys}" var="spy">
-            (MyApp.func(${spy.latitude}, ${spy.longitude}))();
-        </g:each>
+            <g:each in="${spys}" var="spy">
+                map.addMarker(${spy.latitude}, ${spy.longitude});
+            </g:each>
         }
     </g:javascript>
 </body>
