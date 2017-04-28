@@ -8,10 +8,10 @@ var map = (function() {
     }).addTo(mymap);
 
     return {
-        addMarker: function (lat, long) {
-            var spyDescription = "<dl><dt>Name</dt>" + "<dd>"+ "spy.name" + "</dd>" + "<dt>Age</dt>"+"<dd>"+ "spy age" +"</dd>"
-                +"<dt>Gender</dt>" + "<dd>"+ "spy gender" + "</dd>" + "<dt>Latitude</dt>" + "<dd>"+ "spy latitude" + "</dd>"
-                +"<dt>Longitude</dt>" + "<dd>" + "spy longitude" + "</dd>"
+        addMarker: function (name, age, gender, lat, long) {
+            var spyDescription = "<dl><dt>Name</dt>" + "<dd>"+ name + "</dd>" + "<dt>Age</dt>"+"<dd>"+ age +"</dd>"
+                +"<dt>Gender</dt>" + "<dd>"+ gender + "</dd>" + "<dt>Latitude</dt>" + "<dd>"+ lat + "</dd>"
+                +"<dt>Longitude</dt>" + "<dd>" + long + "</dd>"
             var marker = L.marker([lat, long]).addTo(mymap)
                 .bindPopup(spyDescription)
                 .openPopup();

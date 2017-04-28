@@ -16,10 +16,15 @@
     <g:javascript>
         window.onload=function(){
             <g:each in="${spys}" var="spy">
-                map.addMarker(${spy.latitude}, ${spy.longitude});
+                map.addMarker("${spy.name}", ${spy.age}, "${spy.gender}", ${spy.latitude}, ${spy.longitude});
             </g:each>
             map.fitScreen()
         }
     </g:javascript>
+<ul>
+    <g:each in="${spys}" var="spy">
+        <li>${spy.age}</li>
+    </g:each>
+</ul>
 </body>
 </html>
