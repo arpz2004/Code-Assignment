@@ -35,6 +35,21 @@ var map = (function() {
         document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
     });
 
+    document.getElementById("findName").addEventListener("change", function(){
+        layerControl.removeLayer(visibleMarkers);
+        visibleMarkers = new L.LayerGroup();
+        markers.forEach(function(markerWithProps){
+            var marker = markerWithProps.marker;
+            var props = markerWithProps.props;
+            if(props.name === document.getElementById("findName").value){
+                marker.addTo(visibleMarkers);
+            }
+        });
+        layerControl.addBaseLayer(visibleMarkers, "Filtered Markers");
+        document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
+        document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
+    });
+
     return {
         addMarker: function (name, age, gender, lat, long) {
             var femaleIcon = L.icon({
