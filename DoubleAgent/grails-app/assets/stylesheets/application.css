@@ -35,5 +35,13 @@
 
 .legend{
     background-color: #d9edf7;
-    padding: 50px;
+    padding: 20px 50px;
+}
+
+.marker{
+    position: relative;
+    right: 90%;
+    width: 25px;
+    height: 41px;
+    margin: 10px;
 }

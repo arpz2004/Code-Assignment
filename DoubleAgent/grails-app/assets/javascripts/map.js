@@ -86,10 +86,10 @@ var map = (function() {
     var legend = L.control({position: 'bottomright'});
     legend.onAdd = function(mymap){
         var div = L.DomUtil.create('div', 'legend'),
-            markerIcons =['blue', 'pink'],
+            markerIcons =['assets/blue-marker.png', 'assets/pink-marker.png'],
             labels = [];
         for(var i = 0; i < markerIcons.length; i++){
-            div.innerHTML += 'test<br />';
+            div.innerHTML += '<img class = "marker" src = ' + markerIcons[i] + ' alt = "marker" /><br />';
         }
         return div;
     };
