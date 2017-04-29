@@ -151,7 +151,7 @@ var map = (function() {
                 +"<dt>Gender</dt>" + "<dd>"+ gender + "</dd>" + "<dt>Latitude</dt>" + "<dd>"+ lat + "</dd>"
                 +"<dt>Longitude</dt>" + "<dd>" + long + "</dd>";
             //Create marker with pink icon if gender is female
-            if(gender === "Female") {
+            if(gender.toLowerCase() === "female") {
                 var marker = L.marker([lat, long], {icon: femaleIcon, opacity: 1}).addTo(mymap)
                     .bindPopup(spyDescription)
                     .openPopup()
