@@ -87,9 +87,9 @@ var map = (function() {
     legend.onAdd = function(mymap){
         var div = L.DomUtil.create('div', 'legend'),
             markerIcons =['assets/blue-marker.png', 'assets/pink-marker.png'],
-            labels = [];
+            labels = ['Male', 'Female'];
         for(var i = 0; i < markerIcons.length; i++){
-            div.innerHTML += '<img class = "marker" src = ' + markerIcons[i] + ' alt = "marker" /><br />';
+            div.innerHTML += '<img class = "marker" src = ' + markerIcons[i] + ' alt = "marker" />' +labels[i]+'<br />';
         }
         return div;
     };
