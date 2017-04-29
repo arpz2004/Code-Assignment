@@ -5,7 +5,7 @@
 Extract all of the files then navigate to the directory containing the source code. (Go inside
 the directory DoubleAgent where the file "grailsw" is located).
 
-2) Run the command ```./grailsw run-app```. If no errors, move on to step 3.If you 
+2) Run the command ```./grailsw run-app```. If no errors, move on to step 3. If you 
 get an error saying JAVA_HOME is not set, then install JDK and set JAVA_HOME by 
 following the instructions [here](https://www.java.com/en/download/help/path.xml) then 
 run the command again (must be in a new terminal after setting JAVA_HOME).
