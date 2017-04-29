@@ -12,6 +12,7 @@ var map = (function() {
             var femaleIcon = L.icon({
                 className: 'fem-icon',
                 iconUrl: 'assets/pink-marker.png',
+                iconSize: [25,41]
             });
             var spyDescription = "<dl><dt>Name</dt>" + "<dd>"+ name + "</dd>" + "<dt>Age</dt>"+"<dd>"+ age +"</dd>"
                 +"<dt>Gender</dt>" + "<dd>"+ gender + "</dd>" + "<dt>Latitude</dt>" + "<dd>"+ lat + "</dd>"
