@@ -1,7 +1,7 @@
 var map = (function() {
     var markers = [];
     var allMarkers = new L.LayerGroup();
-    var visibleMarkers = new L.LayerGroup()
+    var visibleMarkers = new L.LayerGroup();
 
     var layer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXJwejIwMDQiLCJhIjoiY2oyMWsyeWR5MDAybzJ2cDIwMGg3dXY4eiJ9.7xlHSnQ2tf9H_ZRKFokBNg', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -13,8 +13,14 @@ var map = (function() {
         layers: [layer, allMarkers],
         zoom: 5
     });
+    var overlayMarkers = {
+        "All Markers": allMarkers,
+        "Visible Markers": visibleMarkers
+    };
+    var layerControl = L.control.layers(null, overlayMarkers).addTo(mymap);
 
     document.getElementById("maxAge").addEventListener("change", function(){
+        layerControl.removeLayer(visibleMarkers);
         visibleMarkers = new L.LayerGroup();
         markers.forEach(function(marker){
             var latLng = marker.getLatLng();
@@ -22,11 +28,7 @@ var map = (function() {
                 marker.addTo(visibleMarkers);
             }
         });
-        var overlayMarkers = {
-            "All Markers": allMarkers,
-            "Visible Markers": visibleMarkers
-        };
-        L.control.layers(null, overlayMarkers).addTo(mymap);
+        layerControl.addOverlay(visibleMarkers);
     });
 
     return {
