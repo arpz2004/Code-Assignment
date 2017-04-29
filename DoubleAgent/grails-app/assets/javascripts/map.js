@@ -40,10 +40,10 @@ var map = (function() {
         markers.forEach(function(markerWithProps){
             var marker = markerWithProps.marker;
             var props = markerWithProps.props;
-            if(props.name !== document.getElementById("findName").value){
-                marker.setOpacity(0.1)
-            }else{
+            if(props.name.toLowerCase().includes(document.getElementById("findName").value.toLowerCase())){
                 marker.setOpacity(1)
+            }else{
+                marker.setOpacity(0.1)
             }
         });
         document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
