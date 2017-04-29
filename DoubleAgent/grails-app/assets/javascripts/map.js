@@ -17,6 +17,7 @@ var map = (function() {
         "All Markers": allMarkers,
         "Visible Markers": visibleMarkers
     };
+
     var layerControl = L.control.layers(baseLayerMarkers).addTo(mymap);
 
     document.getElementById("maxAge").addEventListener("change", function(){
@@ -29,6 +30,7 @@ var map = (function() {
             }
         });
         layerControl.addBaseLayer(visibleMarkers, "Visible Markers");
+        document.getElementsByClassName("leaflet-control-layers-selector")[1].click()
     });
 
     return {
