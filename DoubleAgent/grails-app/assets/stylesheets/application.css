@@ -21,16 +21,16 @@
 
 .input{
     text-align: center;
-    margin: 10px
+    margin: 20px 10px 10px;
 }
 
 .button{
     position: relative;
     float: right;
-    right: 40%;
+    right: 50%;
+    margin-right: -210px;
     height: 80px;
     width: 80px;
-    margin-top: 7px;
 }
 
 .legend{
