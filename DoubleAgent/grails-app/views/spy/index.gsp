@@ -28,6 +28,7 @@
                 map.addMarker("${spy.name}", ${spy.age}, "${spy.gender}", ${spy.latitude}, ${spy.longitude});
             </g:each>
             map.fitScreen()
+            document.getElementsByClassName("button")[0].click();
         }
     </g:javascript>
 </body>
