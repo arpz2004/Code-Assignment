@@ -23,3 +23,15 @@
     text-align: center;
     margin: 10px
 }
+
+.button-container{
+    position: absolute;
+    right: 42%;
+}
+
+.button{
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    margin-top: -35px;
+}
