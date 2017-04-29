@@ -4,6 +4,7 @@ class BootStrap {
 
     def grailsApplication
     def init = { servletContext ->
+        // Create new spy object from each row of .csv file
         def file = grailsApplication.mainContext.getResource("cc-maps-data-set.csv").file
         file.splitEachLine(',') {fields ->
             def spy = new Spy(

@@ -12,6 +12,7 @@
     <title>Double Agent Locator</title>
 </head>
 <body>
+    <%-- Max age and Search by Name input fields followed by button that resets fields--%>
     <div class="input">
         <button class="button">Reset Filters</button>
         Max age:
@@ -21,13 +22,18 @@
         Name:
         <g:field type="text" name="findName" placeholder="Search by name" />
     </div>
+    <%-- div to set map height --%>
     <div id="mapid"></div>
     <g:javascript>
+        <%-- Wait until window loads until markers are added --%>
         window.onload=function(){
+            <%-- Add each marker to the map --%>
             <g:each in="${spys}" var="spy">
                 map.addMarker("${spy.name}", ${spy.age}, "${spy.gender}", ${spy.latitude}, ${spy.longitude});
             </g:each>
-            map.fitScreen()
+            <%-- Zoom in or out so all of the initial markers are shown on the map originally --%>
+            map.fitScreen();
+            <%-- Remove values from input fields when refreshing page. --%>
             document.getElementsByClassName("button")[0].click();
         }
     </g:javascript>
