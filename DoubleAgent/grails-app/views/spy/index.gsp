@@ -12,12 +12,10 @@
     <title>Double Agent Locator</title>
 </head>
 <body>
+    <button class="button">Reset Filters</button>
     <div class="input">
         Max age:
         <g:field type="number" name="maxAge" min="0" placeholder="Filter by age" />
-        <div class = "button-container">
-            <button type="button" class="button">Reset Filters</button>
-        </div>
     </div>
     <div class = "input">
         Name:
