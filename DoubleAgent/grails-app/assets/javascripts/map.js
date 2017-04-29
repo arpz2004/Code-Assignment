@@ -37,15 +37,15 @@ var map = (function() {
 
     document.getElementById("findName").addEventListener("change", function(){
         layerControl.removeLayer(visibleMarkers);
-        visibleMarkers = new L.LayerGroup();
         markers.forEach(function(markerWithProps){
             var marker = markerWithProps.marker;
             var props = markerWithProps.props;
-            if(props.name === document.getElementById("findName").value){
-                marker.addTo(visibleMarkers);
+            if(props.name !== document.getElementById("findName").value){
+                marker.setOpacity(0.1)
+            }else{
+                marker.setOpacity(1)
             }
         });
-        layerControl.addBaseLayer(visibleMarkers, "Filtered Markers");
         document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
         document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
     });
@@ -68,12 +68,12 @@ var map = (function() {
                 +"<dt>Gender</dt>" + "<dd>"+ gender + "</dd>" + "<dt>Latitude</dt>" + "<dd>"+ lat + "</dd>"
                 +"<dt>Longitude</dt>" + "<dd>" + long + "</dd>";
             if(gender === "Female") {
-                var marker = L.marker([lat, long], {icon: femaleIcon}).addTo(mymap)
+                var marker = L.marker([lat, long], {icon: femaleIcon, opacity: 1}).addTo(mymap)
                     .bindPopup(spyDescription)
                     .openPopup()
                     .addTo(allMarkers);
             }else{
-                var marker = L.marker([lat, long]).addTo(mymap)
+                var marker = L.marker([lat, long], {opacity: 1}).addTo(mymap)
                     .bindPopup(spyDescription)
                     .openPopup()
                     .addTo(allMarkers);
