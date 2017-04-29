@@ -13,11 +13,11 @@ var map = (function() {
         layers: [layer, allMarkers],
         zoom: 5
     });
-    var overlayMarkers = {
+    var baseLayerMarkers = {
         "All Markers": allMarkers,
         "Visible Markers": visibleMarkers
     };
-    var layerControl = L.control.layers(null, overlayMarkers).addTo(mymap);
+    var layerControl = L.control.layers(baseLayerMarkers).addTo(mymap);
 
     document.getElementById("maxAge").addEventListener("change", function(){
         layerControl.removeLayer(visibleMarkers);
@@ -28,7 +28,7 @@ var map = (function() {
                 marker.addTo(visibleMarkers);
             }
         });
-        layerControl.addOverlay(visibleMarkers);
+        layerControl.addBaseLayer(visibleMarkers, "Visible Markers");
     });
 
     return {
