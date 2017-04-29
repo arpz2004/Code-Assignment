@@ -14,11 +14,11 @@
 <body>
     <div class="input">
         Max age:
-        <g:field type="number" name="maxAge" min="0" required="" placeholder="Filter by age" />
+        <g:field type="number" name="maxAge" min="0" placeholder="Filter by age" />
     </div>
     <div class = "input">
         Name:
-        <g:field type="text" name="findName" required="" placeholder="Search by name" />
+        <g:field type="text" name="findName" placeholder="Search by name" />
     </div>
     <div id="mapid"></div>
     <g:javascript>

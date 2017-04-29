@@ -26,7 +26,12 @@ var map = (function() {
         markers.forEach(function(markerWithProps){
             var marker = markerWithProps.marker;
             var props = markerWithProps.props;
-            if(props.age <= document.getElementById("maxAge").value){
+            var ageInput = document.getElementById("maxAge");
+            var maxAge = 999
+            if(ageInput.value.length != 0){
+                maxAge = ageInput.value
+            }
+            if(props.age <= maxAge){
                 marker.addTo(visibleMarkers);
             }
         });
