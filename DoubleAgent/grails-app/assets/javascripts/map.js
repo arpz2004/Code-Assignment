@@ -15,7 +15,7 @@ var map = (function() {
     });
     var baseLayerMarkers = {
         "All Markers": allMarkers,
-        "Visible Markers": visibleMarkers
+        "Filtered Markers": visibleMarkers
     };
 
     var layerControl = L.control.layers(baseLayerMarkers).addTo(mymap);
@@ -23,14 +23,16 @@ var map = (function() {
     document.getElementById("maxAge").addEventListener("change", function(){
         layerControl.removeLayer(visibleMarkers);
         visibleMarkers = new L.LayerGroup();
-        markers.forEach(function(marker){
-            var latLng = marker.getLatLng();
-            if(latLng.lng < -87.51){
+        markers.forEach(function(markerWithProps){
+            var marker = markerWithProps.marker;
+            var props = markerWithProps.props;
+            if(props.age <= document.getElementById("maxAge").value){
                 marker.addTo(visibleMarkers);
             }
         });
-        layerControl.addBaseLayer(visibleMarkers, "Visible Markers");
-        document.getElementsByClassName("leaflet-control-layers-selector")[1].click()
+        layerControl.addBaseLayer(visibleMarkers, "Filtered Markers");
+        document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
+        document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
     });
 
     return {
@@ -42,6 +44,11 @@ var map = (function() {
                 shadowUrl: 'assets/marker-shadow.png',
                 shadowAnchor: [14,20]
             });
+            var markerProps = {
+                name: name,
+                age: age,
+                gender: gender
+            };
             var spyDescription = "<dl><dt>Name</dt>" + "<dd>"+ name + "</dd>" + "<dt>Age</dt>"+"<dd>"+ age +"</dd>"
                 +"<dt>Gender</dt>" + "<dd>"+ gender + "</dd>" + "<dt>Latitude</dt>" + "<dd>"+ lat + "</dd>"
                 +"<dt>Longitude</dt>" + "<dd>" + long + "</dd>";
@@ -56,11 +63,19 @@ var map = (function() {
                     .openPopup()
                     .addTo(allMarkers);
             }
-            markers.push(marker)
+            var markerWithProps = {
+                marker: marker,
+                props: markerProps
+            };
+            markers.push(markerWithProps)
         },
         fitScreen: function(){
-            var group = L.featureGroup(markers)
-            mymap.fitBounds(group.getBounds())
+            var onlyMarkers = []
+            markers.forEach(function(marker){
+                onlyMarkers.push(marker.marker);
+            });
+            var group = L.featureGroup(onlyMarkers);
+            mymap.fitBounds(group.getBounds());
         }
     }
 })();
