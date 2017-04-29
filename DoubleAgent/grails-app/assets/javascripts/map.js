@@ -27,6 +27,9 @@ var map = (function() {
         "Filtered by Age": visibleMarkers
     };
 
+    //Add the base layers to the map
+    var layerControl = L.control.layers(baseLayerMarkers).addTo(mymap);
+
     //Add click event to reset button
     var resetButton = document.getElementsByClassName("button");
     resetButton[0].addEventListener("click", function(){
@@ -53,9 +56,6 @@ var map = (function() {
         document.getElementById("maxAge").value = "";
         document.getElementById("findName").value = "";
     });
-
-    //Add the base layers to the map
-    var layerControl = L.control.layers(baseLayerMarkers).addTo(mymap);
 
     //Add change event to max age field
     document.getElementById("maxAge").addEventListener("change", function(){
@@ -116,7 +116,7 @@ var map = (function() {
 
     //Create a legend showing what each colored marker means
     var legend = L.control({position: 'bottomright'});
-    legend.onAdd = function(mymap){
+    legend.onAdd = function(){
         //Create a div used for the legend and add the html to show icons and text
         var div = L.DomUtil.create('div', 'legend'),
             markerIcons =['assets/blue-marker.png', 'assets/pink-marker.png'],
@@ -169,12 +169,12 @@ var map = (function() {
                 props: markerProps
             };
             //Add this new object to the markers and filtered markers array
-            markers.push(markerWithProps)
+            markers.push(markerWithProps);
             filteredMarkers.push(markerWithProps)
         },
         //Zoom in or out so all of the markers fit on the map
         fitScreen: function(){
-            var onlyMarkers = []
+            var onlyMarkers = [];
             markers.forEach(function(marker){
                 onlyMarkers.push(marker.marker);
             });
