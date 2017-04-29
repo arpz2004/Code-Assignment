@@ -1,7 +1,7 @@
 # Double Agents
 
 ### Compilation Instructions
-1) Download zip file from email or from GitHub: https://github.com/arpz2004/Code-Assignment
+1) Download zip file from email or from GitHub: https://github.com/arpz2004/Code-Assignment.
 Extract all of the files then navigate to the directory containing the source code. (Go inside
 the directory DoubleAgent where the file "grailsw" is located).
 
