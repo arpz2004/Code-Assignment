@@ -44,3 +44,6 @@
     vertical-align: middle;
     margin: 5px;
 }
+.leaflet-control-layers{
+    visibility: hidden;
+}
