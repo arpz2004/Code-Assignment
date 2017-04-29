@@ -1,5 +1,6 @@
 var map = (function() {
     var markers = [];
+    var filteredMarkers = [];
     var allMarkers = new L.LayerGroup();
     var visibleMarkers = new L.LayerGroup();
 
@@ -22,6 +23,7 @@ var map = (function() {
 
     document.getElementById("maxAge").addEventListener("change", function(){
         layerControl.removeLayer(visibleMarkers);
+        filteredMarkers = [];
         visibleMarkers = new L.LayerGroup();
         markers.forEach(function(markerWithProps){
             var marker = markerWithProps.marker;
@@ -33,6 +35,7 @@ var map = (function() {
             }
             if(props.age <= maxAge){
                 marker.addTo(visibleMarkers);
+                filteredMarkers.push(markerWithProps);
             }
         });
         layerControl.addBaseLayer(visibleMarkers, "Filtered Markers");
@@ -42,15 +45,21 @@ var map = (function() {
 
     document.getElementById("findName").addEventListener("change", function(){
         layerControl.removeLayer(visibleMarkers);
-        markers.forEach(function(markerWithProps){
+        visibleMarkers = new L.LayerGroup();
+        markers.forEach(function(markerWithProps) {
             var marker = markerWithProps.marker;
             var props = markerWithProps.props;
-            if(props.name.toLowerCase().includes(document.getElementById("findName").value.toLowerCase())){
+            if (props.name.toLowerCase().includes(document.getElementById("findName").value.toLowerCase())) {
                 marker.setOpacity(1)
-            }else{
+            } else {
                 marker.setOpacity(0.1)
             }
         });
+        filteredMarkers.forEach(function(markerWithProps){
+            var marker = markerWithProps.marker;
+            marker.addTo(visibleMarkers);
+        });
+        layerControl.addBaseLayer(visibleMarkers, "Filtered Markers");
         document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
         document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
     });
@@ -88,6 +97,7 @@ var map = (function() {
                 props: markerProps
             };
             markers.push(markerWithProps)
+            filteredMarkers.push(markerWithProps)
         },
         fitScreen: function(){
             var onlyMarkers = []
