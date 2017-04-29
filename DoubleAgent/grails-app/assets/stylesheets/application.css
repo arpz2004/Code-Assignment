@@ -13,4 +13,8 @@
 *= require mobile
 *= require_self
 */
-#mapid{height: 750px;}
+#mapid{
+    height: 750px;
+    width: 85%;
+    margin-left: 7.5%;
+}
