@@ -9,12 +9,22 @@ var map = (function() {
 
     return {
         addMarker: function (name, age, gender, lat, long) {
+            var femaleIcon = L.icon({
+                className: 'fem-icon',
+                iconUrl: 'assets/pink-marker.png',
+            });
             var spyDescription = "<dl><dt>Name</dt>" + "<dd>"+ name + "</dd>" + "<dt>Age</dt>"+"<dd>"+ age +"</dd>"
                 +"<dt>Gender</dt>" + "<dd>"+ gender + "</dd>" + "<dt>Latitude</dt>" + "<dd>"+ lat + "</dd>"
                 +"<dt>Longitude</dt>" + "<dd>" + long + "</dd>"
-            var marker = L.marker([lat, long]).addTo(mymap)
-                .bindPopup(spyDescription)
-                .openPopup();
+            if(gender === "Female") {
+                var marker = L.marker([lat, long], {icon: femaleIcon}).addTo(mymap)
+                    .bindPopup(spyDescription)
+                    .openPopup();
+            }else{
+                var marker = L.marker([lat, long]).addTo(mymap)
+                    .bindPopup(spyDescription)
+                    .openPopup();
+            }
             markers.push(marker)
         },
         fitScreen: function(){
