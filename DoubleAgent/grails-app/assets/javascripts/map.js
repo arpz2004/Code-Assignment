@@ -16,8 +16,27 @@ var map = (function() {
     });
     var baseLayerMarkers = {
         "All Markers": allMarkers,
-        "Filtered Markers": visibleMarkers
+        "Filtered by Age": visibleMarkers
     };
+
+    var resetButton = document.getElementsByClassName("button");
+    resetButton[0].addEventListener("click", function(){
+        document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
+        markers.forEach(function(markerWithProps) {
+            var marker = markerWithProps.marker;
+            marker.setOpacity(1)
+        });
+        filteredMarkers = markers.slice();
+        layerControl.removeLayer(visibleMarkers);
+        visibleMarkers = new L.LayerGroup();
+        filteredMarkers.forEach(function(markerWithProps){
+            var marker = markerWithProps.marker;
+            marker.addTo(visibleMarkers);
+        });
+        layerControl.addBaseLayer(visibleMarkers, "Filtered by Age");
+        document.getElementById("maxAge").value = "";
+        document.getElementById("findName").value = "";
+    });
 
     var layerControl = L.control.layers(baseLayerMarkers).addTo(mymap);
 
@@ -38,7 +57,7 @@ var map = (function() {
                 filteredMarkers.push(markerWithProps);
             }
         });
-        layerControl.addBaseLayer(visibleMarkers, "Filtered Markers");
+        layerControl.addBaseLayer(visibleMarkers, "Filtered by Age");
         document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
         document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
     });
@@ -59,7 +78,7 @@ var map = (function() {
             var marker = markerWithProps.marker;
             marker.addTo(visibleMarkers);
         });
-        layerControl.addBaseLayer(visibleMarkers, "Filtered Markers");
+        layerControl.addBaseLayer(visibleMarkers, "Filtered by Age");
         document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
         document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
     });
