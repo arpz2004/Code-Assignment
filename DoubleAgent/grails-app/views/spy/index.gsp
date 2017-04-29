@@ -25,5 +25,6 @@
             map.fitScreen()
         }
     </g:javascript>
+    <p id="test44">Hi</p>
 </body>
 </html>
