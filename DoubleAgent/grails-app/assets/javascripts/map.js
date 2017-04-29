@@ -83,6 +83,18 @@ var map = (function() {
         document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
     });
 
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function(mymap){
+        var div = L.DomUtil.create('div', 'legend'),
+            markerIcons =['blue', 'pink'],
+            labels = [];
+        for(var i = 0; i < markerIcons.length; i++){
+            div.innerHTML += 'test<br />';
+        }
+        return div;
+    };
+    legend.addTo(mymap);
+
     return {
         addMarker: function (name, age, gender, lat, long) {
             var femaleIcon = L.icon({

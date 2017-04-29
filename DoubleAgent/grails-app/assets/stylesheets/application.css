@@ -32,3 +32,8 @@
     width: 80px;
     margin-top: 7px;
 }
+
+.legend{
+    background-color: #d9edf7;
+    padding: 50px;
+}
