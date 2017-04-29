@@ -12,6 +12,10 @@
     <title>Double Agent Locator</title>
 </head>
 <body>
+    <div class="input">
+        Max age:
+        <g:field type="number" name="maxAge" min="0" required="" placeholder="Filter by age" />
+    </div>
     <div id="mapid"></div>
     <g:javascript>
         window.onload=function(){
@@ -21,10 +25,5 @@
             map.fitScreen()
         }
     </g:javascript>
-<ul>
-    <g:each in="${spys}" var="spy">
-        <li>${spy.age}</li>
-    </g:each>
-</ul>
 </body>
 </html>
