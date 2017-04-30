@@ -14,3 +14,5 @@ run the command again (must be in a new terminal after setting JAVA_HOME).
 "Grails application running at http://localhost:8080".
 
 4) Open browser and enter ```localhost:8080``` after the server starts.
+
+5) The application is only a single page and everything should be straightforward.
