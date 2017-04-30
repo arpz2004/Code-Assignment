@@ -47,3 +47,7 @@
 .leaflet-control-layers{
     visibility: hidden;
 }
+
+.spyCount{
+    text-align: center;
+}

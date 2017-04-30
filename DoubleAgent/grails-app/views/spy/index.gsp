@@ -22,6 +22,7 @@
         Name:
         <g:field type="text" name="findName" placeholder="Search by name" />
     </div>
+    <div class = "spyCount"></div>
     <%-- div to set map height --%>
     <div id="mapid"></div>
     <g:javascript>

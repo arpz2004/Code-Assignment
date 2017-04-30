@@ -55,6 +55,7 @@ var map = (function() {
         //Reset the input fields
         document.getElementById("maxAge").value = "";
         document.getElementById("findName").value = "";
+        changeSpyCount();
     });
 
     //Add change event to max age field
@@ -84,6 +85,7 @@ var map = (function() {
         layerControl.addBaseLayer(visibleMarkers, "Filtered by Age");
         document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
         document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
+        changeSpyCount();
     });
 
     //Add change event to search by name field
@@ -112,6 +114,7 @@ var map = (function() {
         layerControl.addBaseLayer(visibleMarkers, "Filtered by Age");
         document.getElementsByClassName("leaflet-control-layers-selector")[0].click();
         document.getElementsByClassName("leaflet-control-layers-selector")[1].click();
+        changeSpyCount();
     });
 
     //Create a legend showing what each colored marker means
@@ -128,6 +131,19 @@ var map = (function() {
     };
     //Add the legend to the map
     legend.addTo(mymap);
+
+    //Gets the total number of spies on the map. Only includes the highlighted markers when searching by name.
+    function getTotalSpies(){
+        var totalSpies = markers.length;
+        if(document.getElementsByClassName("leaflet-control-layers-selector")[1].checked){
+            totalSpies = filteredMarkers.length;
+        }
+        return totalSpies;
+    }
+
+    function changeSpyCount(){
+        document.getElementsByClassName("spyCount")[0].innerHTML = "<b>Spy Count: </b>" + getTotalSpies();
+    }
 
     //Return addMarker and fitScreen functions to be used by html
     return {
