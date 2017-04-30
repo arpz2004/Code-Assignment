@@ -30,6 +30,26 @@ var map = (function() {
     //Add the base layers to the map
     var layerControl = L.control.layers(baseLayerMarkers).addTo(mymap);
 
+    //Gets the total number of spies on the map. Only includes the highlighted markers when searching by name.
+    function getTotalSpies(){
+        var totalSpies = markers.length;
+        if(document.getElementsByClassName("leaflet-control-layers-selector")[1].checked){
+            totalSpies = 0;
+            filteredMarkers.forEach(function(markerWithProps){
+                var props = markerWithProps.props;
+                if(props.opacity == 1){
+                    totalSpies++;
+                }
+            });
+        }
+        return totalSpies;
+    }
+
+    //Changes the spy count in the html
+    function changeSpyCount(){
+        document.getElementsByClassName("spyCount")[0].innerHTML = "<b>Spy Count: </b>" + getTotalSpies();
+    }
+
     //Add click event to reset button
     var resetButton = document.getElementsByClassName("button");
     resetButton[0].addEventListener("click", function(){
@@ -38,7 +58,9 @@ var map = (function() {
         //Switch all markers back to original opacity
         markers.forEach(function(markerWithProps) {
             var marker = markerWithProps.marker;
-            marker.setOpacity(1)
+            var props = markerWithProps.props;
+            marker.setOpacity(1);
+            props.opacity = 1;
         });
         //Reset the filtered markers to the original markers
         filteredMarkers = markers.slice();
@@ -100,9 +122,11 @@ var map = (function() {
             var props = markerWithProps.props;
             //If the input is a substring of the spy's name (not case sensitive), highlight the marker (dim all other markers)
             if (props.name.toLowerCase().includes(document.getElementById("findName").value.toLowerCase())) {
-                marker.setOpacity(1)
+                marker.setOpacity(1);
+                props.opacity = 1;
             } else {
-                marker.setOpacity(0.1)
+                marker.setOpacity(0.1);
+                props.opacity= 0.1;
             }
         });
         //Add the filtered markers to the visible markers so only the ones still filtered by age show
@@ -132,19 +156,6 @@ var map = (function() {
     //Add the legend to the map
     legend.addTo(mymap);
 
-    //Gets the total number of spies on the map. Only includes the highlighted markers when searching by name.
-    function getTotalSpies(){
-        var totalSpies = markers.length;
-        if(document.getElementsByClassName("leaflet-control-layers-selector")[1].checked){
-            totalSpies = filteredMarkers.length;
-        }
-        return totalSpies;
-    }
-
-    function changeSpyCount(){
-        document.getElementsByClassName("spyCount")[0].innerHTML = "<b>Spy Count: </b>" + getTotalSpies();
-    }
-
     //Return addMarker and fitScreen functions to be used by html
     return {
         addMarker: function (name, age, gender, lat, long) {
@@ -160,7 +171,8 @@ var map = (function() {
             var markerProps = {
                 name: name,
                 age: age,
-                gender: gender
+                gender: gender,
+                opacity: 1
             };
             //Display the properties of the spy in the popup
             var spyDescription = "<dl><dt>Name</dt>" + "<dd>"+ name + "</dd>" + "<dt>Age</dt>"+"<dd>"+ age +"</dd>"
